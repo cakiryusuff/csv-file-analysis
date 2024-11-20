@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic CSV Analyzer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+      <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <!-- font awesome style -->
+    <link href="static/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="static/css/responsive.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="hero_area">
+  
+      <div class="hero_bg_box">
+        <div class="bg_img_box">
+          <img src="{{ url_for('static', filename='images/hero-bg.png') }}" alt="">
+        </div>
+      </div>
+  
+      <!-- header section strats -->
+      <header class="header_section">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+                <a class="navbar-brand" href="{{ url_for('upload_file') }}">
+                    <span>Dynamic CSV Analyzer</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('upload_file') }}">Home</a>
+                        </li>
+                        <li class="nav-item {% if active_page == 'table' %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('table_page') }}">Table <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item {% if active_page == 'scatter' %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('scatter_page') }}">Scatter</a>
+                        </li>
+                        <li class="nav-item {% if active_page == 'categorical' %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('categorical_page') }}">Categorical</a>
+                        </li>
+                        <li class="nav-item {% if active_page == 'correlation' %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('correlation_page') }}">Correlation Matrix</a>
+                        </li>
+                        <li class="nav-item {% if active_page == 'machine' %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('machine_page') }}">Machine Learning</a>
+                        </li>
+                        <li class="nav-item {% if active_page == 'chatgpt_dashboard' %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('chatgpt_dashboard') }}">Analysis Assistant</a>
+                        </li>
+                        <form class="form-inline">
+                            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+      </header>
+      <!-- end header section -->
+      <!-- slider section -->
+      <section class="slider_section ">
+        <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container ">
+                  <div class="row">
+                    <div class="col-md-6 ">
+                      <div class="detail-box">
+                        <h1>
+                          Yusuf Çakır<br>
+  
+                        </h1>
+                        <h2>
+                            looking for a job
+                        </h2>
+                        <h3>  Junior Artificial
+                          Intelligence  Engineer</h3>
+                        <p>
+                          Artificial Intelligence Engineer and recent graduate skilled in designing, implementing, and deploying innovative artificial intelligence systems. Proficient in industry-standard tools such as OpenCV and PyTorch. Experienced in machine learning, deep learning and large language models.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="img-box">
+                          <img src="{{ url_for('static', filename='images/pp.jpg') }}" alt="" style="width: 400px; height: auto;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item ">
+                <div class="container ">
+                  <div class="row">
+                    <div class="col-md-6 ">
+                      <div class="detail-box">
+                        <h1>
+                          About<br>
+                          This Website
+                        </h1>
+                        <p>
+                            This website reads your CSV file and performs data analysis without requiring any code. It can fill missing values, delete rows or columns, and allow you to download the edited dataset. You can also check the compatibility of the features in your dataset. Additionally, if you're not good at reading tables, the integrated analysis assistant can provide you with a summary of the dataset.
+                        </p>
+  
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="img-box">
+                        <img src="{{ url_for('static', filename='images/table-img.png') }}" alt="" style="width: 800px; height: auto; border-radius: 30px; margin-left: 50px;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <div class="carousel-item ">
+              <div class="container ">
+                <div class="row">
+                  <div class="col-md-6 ">
+                    <div class="detail-box">
+                      <h1>
+                        Deep<br>
+                        Vision
+                      </h1>
+                      <p>
+                        This project is a mobile application designed for visually impaired people. The application analyzes camera images to detect objects and people and communicates this information to the user audibly.
+                      </p>
+
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="img-box">
+                      <img src="{{ url_for('static', filename='images/mainpage.png') }}" alt="" style="width: 300px; height: auto; border-radius: 30px; margin-left: 50px;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item ">
+              <div class="container ">
+                <div class="row">
+                  <div class="col-md-6 ">
+                    <div class="detail-box">
+                      <h1>
+                        House <br>
+                        Generator
+                      </h1>
+                      <p>
+                        House Generator with Pix2PixGAN and PyQt5 is a project that utilizes the Pix2Pix Generative Adversarial Network (GAN) to generate house images based on input sketches. The project combines advanced AI techniques with a user-friendly interface built using PyQt5, allowing users to draw a rough house design and see it transformed into a realistic house image. It demonstrates the power of conditional GANs in image-to-image translation tasks.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="img-box">
+                        <img src="{{ url_for('static', filename='images/pix2pix.png') }}" alt="" style="width: 800px; height: auto;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <ol class="carousel-indicators">
+            <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+            <li data-target="#customCarousel1" data-slide-to="1"></li>
+            <li data-target="#customCarousel1" data-slide-to="2"></li>
+            <li data-target="#customCarousel1" data-slide-to="3"></li>
+          </ol>
+        </div>
+  
+      </section>
+      <!-- end slider section -->
+    </div>
+  
+  
+    <!-- service section -->
+  
+    <section class="service_section layout_padding">
+      <div class="service_container">
+        <div class="container ">
+          <div class="heading_container heading_center">
+            <h2>
+                <span>Contact</span>
+            </h2>
+            <p>
+                I'm currently seeking job opportunities. You can reach me at the contact details below
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <div class="box ">
+                <div class="img-box">
+                  <img src="{{ url_for('static', filename='images/phone-call.png') }}" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    +90 552 378 33 17
+                  </h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 ">
+              <div class="box ">
+                <div class="img-box">
+                  <img src="{{ url_for('static', filename='images/mail.png') }}" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5 style="text-transform: lowercase;">
+                    cakir_yusuff@outlook.com
+                  </h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 ">
+              <div class="box ">
+                <div class="img-box">
+                  <img src="{{ url_for('static', filename='images/location.png') }}" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    Düzce/Türkiye
+                  </h5>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="box ">
+                  <div class="img-box">
+                    <img src="{{ url_for('static', filename='images/github-sign.png') }}" alt="">
+                  </div>
+                  <div class="detail-box">
+                    <h5 style="text-transform: lowercase;">
+                    github.com/cakiryusuff
+                    </h5>
+  
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 ">
+                <div class="box ">
+                  <div class="img-box">
+                    <img src="{{ url_for('static', filename='images/linkedin.png') }}" alt="">
+                  </div>
+                  <div class="detail-box">
+                    <h5 style="text-transform: lowercase;">
+                        linkedin.com/in/cakiryusuff
+                    </h5>
+  
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+  
+    <!-- about section -->
+  
+    <section class="about_section layout_padding">
+      <div class="container  ">
+        <div class="heading_container heading_center">
+          <h2>
+            <span>Experience</span>
+          </h2>
+          <p>
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-md-6 ">
+            <div class="img-box">
+              <img src="{{ url_for('static', filename='images/ai2.png') }}" alt="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="detail-box">
+              <h4>SmartIR Infrared Technologies <br>2024 February - June</h4>
+
+              <h3>
+                Artificial Intelligence Engineering Intern
+              </h3>
+              <p>
+                Participated in various engineering tasks and projects during my internship, gaining hands-on experience and contributing to the team's efforts.
+              </p>
+              <p>
+                Designed and developed three deep learning models during the Al internship, achieving an accuracy rate of over 90%, which improved the team's predictive capabilities for DeepFake Detection tasks.
+              </p>
+              <p>
+                During my internship, I gained extensive experience by learning and implementing numerous new models, which broadened my understanding of advanced deep learning techniques.
+              </p>
+              <p>
+                I participated in and contributed to projects related to Liveness Detection.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="about_section layout_padding" style="padding-top: 0px;">
+        <div class="container  ">
+          <div class="heading_container heading_center">
+            <p>
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-md-6 ">
+              <div class="img-box">
+                <img src="{{ url_for('static', filename='images/ai.png') }}" alt="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="detail-box">
+                <h4>DigiNova Information Technologies <br>2024 June - August</h4>
+  
+                <h3>
+                  Artificial Intelligence Engineering Intern
+                </h3>
+                <p>
+                    During the internship, I first focused on understanding the company’s system and then developed
+                </p>
+                <p>
+                    Image processing and artificial intelligence packages tailored to the system.
+                </p>
+                <p>
+                    During this time, I also learned various functional tools such as Git, Docker, Linux, and PyCharm.
+                </p>
+                <p>
+                    With Git, I learned about version control for packages and how to make commits properly.
+                </p>
+                <p>
+                    With Docker, I gained knowledge about creating images and setting up packages in containers.
+                </p>
+                <p>Additionally, I worked on Ubuntu 20.04 throughout this process.</p>
+                <p>The IDE used was PyCharm Professional.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+    <!-- end about section -->
+  
+    <!-- why section -->
+  
+    <section class="why_section layout_padding">
+        <div class="container">
+          <!-- Başlık -->
+          <div class="heading_container heading_center">
+            <h2>
+              My <span>Skills</span>
+            </h2>
+          </div>
+      
+          <!-- Yetenekler Bölümü -->
+          <div class="row g-4">
+            <!-- Skill 1 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="box text-center p-3 shadow rounded">
+                <div class="detail-box">
+                  <h5 class="fw-bold">Version Control</h5>
+                  <p class="text-muted">
+                    Expertise in Git and GitHub for managing version control efficiently in both small and large-scale projects.
+                  </p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Skill 2 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="box text-center p-3 shadow rounded">
+
+                <div class="detail-box">
+                  <h5 class="fw-bold">Project Management</h5>
+                  <p class="text-muted">
+                    Skilled in using JIRA and Trello for task management, project planning, and tracking team progress effectively.
+                  </p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Skill 3 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="box text-center p-3 shadow rounded">
+
+                <div class="detail-box">
+                  <h5 class="fw-bold">Programming</h5>
+                  <p class="text-muted">
+                    Proficient in Python, Object-Oriented Programming, and implementing efficient algorithms and data structures.
+                  </p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Skill 4 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="box text-center p-3 shadow rounded">
+
+                <div class="detail-box">
+                  <h5 class="fw-bold">Linux</h5>
+                  <p class="text-muted">
+                    Extensive experience with Linux systems for development, deployment, and server management.
+                  </p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Skill 5 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="box text-center p-3 shadow rounded">
+
+                <div class="detail-box">
+                  <h5 class="fw-bold">Digital Image Processing</h5>
+                  <p class="text-muted">
+                    Proficient in OpenCV and scikit-image for advanced digital image processing tasks and projects.
+                  </p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Skill 6 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="box text-center p-3 shadow rounded">
+
+                <div class="detail-box">
+                  <h5 class="fw-bold">Deep Learning</h5>
+                  <p class="text-muted">
+                    Expertise in PyTorch for building, training, and deploying state-of-the-art deep learning models.
+                  </p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Skill 7 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="box text-center p-3 shadow rounded">
+
+                <div class="detail-box">
+                  <h5 class="fw-bold">Machine Learning</h5>
+                  <p class="text-muted">
+                    Experienced in scikit-learn for implementing efficient machine learning pipelines and algorithms.
+                  </p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Skill 8 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="box text-center p-3 shadow rounded">
+
+                <div class="detail-box">
+                  <h5 class="fw-bold">Development Tools</h5>
+                  <p class="text-muted">
+                    Proficient in using IDEs like Visual Studio Code, PyCharm, and Spyder for efficient development.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </section>
+      
+  
+    <!-- end why section -->
+  
+
+    <!-- end client section -->
+  
+  
+    <!-- info section -->
+  
+    <section class="info_section layout_padding2">
+      <div class="container">
+      </div>
+    </section>
+  
+    <!-- end info section -->
+  
+    <!-- footer section -->
+    <section class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved By
+          <a href="https://html.design/">Free Html Templates</a>
+        </p>
+      </div>
+    </section>
+    <!-- footer section -->
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="static/js/jquery-3.4.1.min.js"></script>
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <!-- bootstrap js -->
+    <script type="text/javascript" src="static/js/bootstrap.js"></script>
+    <!-- owl slider -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <!-- custom js -->
+    <script type="text/javascript" src="static/js/custom.js"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+  
+  </body>
+  
+</html>

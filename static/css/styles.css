@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #387478;
+}
+.text-white {
+        color: white !important;
+    }
+    .table-container {
+        background-color: #ffffff; /* Arka plan beyaz */
+        padding: 30px; /* Tablo ile kenar arasında daha geniş boşluk */
+        border-radius: 15px; /* Daha yumuşak köşe yuvarlama */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Daha belirgin gölge efekti */
+        margin: 100px auto; /* Yatayda ortalama ve dikeyde üstten boşluk */
+        max-width: 90%; /* Maksimum genişlik (sayfaya uyum sağlar) */
+        overflow-x: auto; /* Yatay taşma durumunda kaydırma çubuğu */
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .table {
+        color: black; /* Tablo yazıları siyah */
+    }
+
+.top-panel {
+    background-color: white;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+.content-panel {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+.nav-tabs .nav-link.active {
+    background-color: #629584;
+    color: white !important;
+}
+.nav-tabs .nav-link {
+    color: #243642;
+}
+.btn-primary {
+    background-color: #629584;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #E2F1E7;
+}
+.alert-warning {
+    background-color: #387478;
+    color: #243642;
+    border: 1px solid #E2F1E7;
+}
+.table {
+    border: 1px solid #243642;
+}
+.table thead {
+    background-color: #629584;
+    color: white;
+}
+.match {
+    background-color: #28a745; /* Yeşil */
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.no-match {
+    background-color: #dc3545; /* Kırmızı */
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+/*------------------------index.html css-----------------------------*/
+
